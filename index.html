@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══════════════════════════════════════════
+       SEO ve Meta Etiketleri
+       Başlık ve açıklamayı buradan değiştirebilirsin.
+  ═══════════════════════════════════════════ -->
+  <title>Gizem Yüksel – Çevirmen Adayı</title>
+  <meta name="description" content="Gizem Yüksel'in kişisel web sitesi. Film ve dizi yerelleştirmesine, marketinge ilgi duyan çevirmen adayı." />
+  <meta name="author" content="Gizem Yüksel" />
+
+  <!-- Google Fonts: Host Grotesk (Bauhaus tasarım sistemi yazı tipi) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       BAUHAUS TASARIM SİSTEMİ – CSS DEĞİŞKENLERİ
+       Renk ve boyutları buradan merkezi olarak değiştirebilirsin.
+    ═══════════════════════════════════════════ */
+    :root {
+      --dp-color-ground:        #f5f4ee;   /* Kırık beyaz zemin */
+      --dp-color-ink:           #000000;   /* Siyah */
+      --dp-color-accent:        #ff0000;   /* Kırmızı */
+      --dp-color-field:         #0000ff;   /* Mavi */
+      --dp-color-field-support: #ffff00;   /* Sarı */
+      --dp-color-quiet:         #e8e8e8;   /* Açık gri */
+      --dp-color-on-field:      #ffffff;   /* Beyaz (renkli arka plan üzeri) */
+
+      --dp-typography-face:           "Host Grotesk", sans-serif;
+      --dp-typography-body:           18px;
+      --dp-typography-reading:        17px;
+      --dp-typography-label:          15px;
+      --dp-typography-caption:        14px;
+      --dp-typography-weight-display: 800;
+      --dp-typography-weight-action:  750;
+      --dp-typography-weight-label:   650;
+      --dp-typography-weight-reading: 450;
+      --dp-typography-reading-leading:1.5;
+
+      --dp-spacing-gutter:  clamp(22px, 4.45cqi, 72px);
+      --dp-radius-square:   0;
+      --dp-radius-circle:   50%;
+      --dp-border-rule:     4px;
+      --dp-border-rule-compact: 3px;
+      --dp-motion-interaction: 0s;
+    }
+
+    /* ═══════════════════════════════════════════
+       SIFIRLAMALAR VE TEMEL STİLLER
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      container-type: inline-size;
+    }
+
+    body {
+      font-family: var(--dp-typography-face);
+      font-size: var(--dp-typography-body);
+      font-weight: var(--dp-typography-weight-reading);
+      background-color: var(--dp-color-ground);
+      color: var(--dp-color-ink);
+      line-height: var(--dp-typography-reading-leading);
+      overflow-x: hidden;
+    }
+
+    /* Reduced motion tercihi (erişilebilirlik) */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       BAUHAUS AĞIR ÇİZGİLER (SEAMS)
+       Bölümler arası kalın siyah çizgiler
+    ═══════════════════════════════════════════ */
+    .seam {
+      border-top: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    .seam-bottom {
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVİGASYON / DİL GEÇİŞ BUTONU
+    ═══════════════════════════════════════════ */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px var(--dp-spacing-gutter);
+      background-color: var(--dp-color-ink);
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: var(--dp-typography-weight-display);
+      color: var(--dp-color-on-field);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo .logo-accent {
+      color: var(--dp-color-field-support);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Dil geçiş düğmesi – sarı zemin üzerine siyah yazı */
+    #lang-toggle {
+      background: var(--dp-color-field-support);
+      color: var(--dp-color-ink);
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      padding: 6px 18px;
+      font-family: var(--dp-typography-face);
+      font-size: var(--dp-typography-label);
+      font-weight: var(--dp-typography-weight-label);
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background var(--dp-motion-interaction);
+      /* Odak erişilebilirliği */
+      outline-offset: 3px;
+    }
+
+    #lang-toggle:hover {
+      background: var(--dp-color-accent);
+      color: var(--dp-color-on-field);
+    }
+
+    #lang-toggle:focus-visible {
+      outline: 3px solid var(--dp-color-field-support);
+    }
+
+    /* Kedi ikonu nav'da */
+    .nav-cat {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO BÖLÜMÜ – İKİ PANEL (Kırmızı + Kırık Beyaz)
+    ═══════════════════════════════════════════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      min-height: 90vh;
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    /* Sol panel – kırmızı */
+    .hero-accent-panel {
+      background-color: var(--dp-color-accent);
+      padding: var(--dp-spacing-gutter);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: var(--dp-border-rule) solid var(--dp-color-ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Bauhaus kedi SVG illüstrasyonu – sol panelde */
+    .hero-cat-svg {
+      width: 100%;
+      max-width: 220px;
+      align-self: center;
+      margin: auto;
+    }
+
+    .hero-label {
+      font-size: var(--dp-typography-caption);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dp-color-on-field);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      align-self: flex-end;
+    }
+
+    .hero-year {
+      font-size: var(--dp-typography-caption);
+      font-weight: var(--dp-typography-weight-label);
+      color: var(--dp-color-on-field);
+      letter-spacing: 0.1em;
+    }
+
+    /* Sağ panel – kırık beyaz/ana içerik */
+    .hero-main-panel {
+      padding: var(--dp-spacing-gutter);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--dp-color-field-support);
+      color: var(--dp-color-ink);
+      font-size: var(--dp-typography-caption);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+      width: fit-content;
+    }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 8cqi, 6.5rem);
+      font-weight: var(--dp-typography-weight-display);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--dp-color-ink);
+    }
+
+    .hero-name .name-line-accent {
+      color: var(--dp-color-accent);
+    }
+
+    /* Daktilo animasyonu (typewriter) */
+    .typewriter-container {
+      border-left: var(--dp-border-rule) solid var(--dp-color-field);
+      padding-left: 20px;
+    }
+
+    .typewriter-prefix {
+      font-size: var(--dp-typography-label);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dp-color-field);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .typewriter-text {
+      font-size: clamp(1rem, 2.5cqi, 1.35rem);
+      font-weight: var(--dp-typography-weight-reading);
+      color: var(--dp-color-ink);
+      min-height: 2em;
+    }
+
+    /* Daktilo imleci (cursor) */
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.1em;
+      background: var(--dp-color-accent);
+      vertical-align: text-bottom;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* Hero alt kısım – dil bilgisi blokları */
+    .hero-langs {
+      display: flex;
+      gap: 0;
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      width: fit-content;
+    }
+
+    .lang-pill {
+      padding: 8px 20px;
+      font-size: var(--dp-typography-label);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.05em;
+      border-right: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+    }
+
+    .lang-pill:last-child { border-right: none; }
+    .lang-pill.lang-tr { background: var(--dp-color-ink); color: var(--dp-color-on-field); }
+    .lang-pill.lang-en { background: var(--dp-color-field); color: var(--dp-color-on-field); }
+    .lang-pill.lang-es { background: var(--dp-color-field-support); color: var(--dp-color-ink); }
+
+    /* CTA dairesel buton */
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: var(--dp-radius-circle);
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      background: var(--dp-color-on-field);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--dp-color-ink);
+      box-shadow: 5px 5px 0 var(--dp-color-ink);
+      transition: box-shadow var(--dp-motion-interaction), transform var(--dp-motion-interaction);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .btn-circle:hover {
+      box-shadow: 2px 2px 0 var(--dp-color-ink);
+      transform: translate(3px, 3px);
+    }
+
+    .btn-circle:focus-visible {
+      outline: 3px solid var(--dp-color-field);
+      outline-offset: 4px;
+    }
+
+    .btn-circle.btn-accent {
+      background: var(--dp-color-accent);
+      color: var(--dp-color-on-field);
+    }
+
+    .btn-rect {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      background: var(--dp-color-field);
+      color: var(--dp-color-on-field);
+      font-family: var(--dp-typography-face);
+      font-size: var(--dp-typography-label);
+      font-weight: var(--dp-typography-weight-action);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--dp-color-ink);
+    }
+
+    .btn-rect:hover {
+      box-shadow: 2px 2px 0 var(--dp-color-ink);
+      transform: translate(2px, 2px);
+    }
+
+    .btn-rect:focus-visible {
+      outline: 3px solid var(--dp-color-field-support);
+      outline-offset: 3px;
+    }
+
+    /* ═══════════════════════════════════════════
+       HAKKIMDA BÖLÜMÜ
+    ═══════════════════════════════════════════ */
+    .section-about {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    /* Sarı başlık bloğu (dikey) */
+    .section-heading-block {
+      background: var(--dp-color-field-support);
+      border-right: var(--dp-border-rule) solid var(--dp-color-ink);
+      padding: var(--dp-spacing-gutter) 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 100px;
+    }
+
+    .section-heading-block h2 {
+      font-size: 1rem;
+      font-weight: var(--dp-typography-weight-display);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: var(--dp-color-ink);
+    }
+
+    .section-content {
+      padding: var(--dp-spacing-gutter);
+    }
+
+    /* Olgular (facts) – iki sütun grid */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      margin-top: 28px;
+    }
+
+    .fact-item {
+      padding: 20px 24px;
+      border-right: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+      border-bottom: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+    }
+
+    .fact-item:nth-child(even) { border-right: none; }
+    .fact-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    .fact-label {
+      font-size: var(--dp-typography-caption);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dp-color-field);
+      margin-bottom: 4px;
+    }
+
+    .fact-value {
+      font-size: var(--dp-typography-body);
+      font-weight: var(--dp-typography-weight-label);
+      color: var(--dp-color-ink);
+    }
+
+    .about-text {
+      font-size: var(--dp-typography-reading);
+      line-height: var(--dp-typography-reading-leading);
+      max-width: 680px;
+      color: var(--dp-color-ink);
+    }
+
+    .about-goal {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--dp-color-field);
+      color: var(--dp-color-on-field);
+      border-left: var(--dp-border-rule) solid var(--dp-color-ink);
+      font-size: var(--dp-typography-reading);
+      font-weight: var(--dp-typography-weight-label);
+    }
+
+    .about-goal .goal-label {
+      font-size: var(--dp-typography-caption);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+       BECERİLER BÖLÜMÜ
+    ═══════════════════════════════════════════ */
+    .section-skills {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    .section-heading-block.red-block {
+      background: var(--dp-color-accent);
+    }
+
+    .section-heading-block.red-block h2 {
+      color: var(--dp-color-on-field);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    .skill-card {
+      padding: 28px 24px;
+      border-right: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:last-child { border-right: none; }
+
+    /* Her kart için üstte renkli şerit */
+    .skill-card::before {
+      content: '';
+      display: block;
+      height: 6px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .skill-card:nth-child(1)::before { background: var(--dp-color-accent); }
+    .skill-card:nth-child(2)::before { background: var(--dp-color-field); }
+    .skill-card:nth-child(3)::before { background: var(--dp-color-field-support); }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .skill-name {
+      font-size: 1.3rem;
+      font-weight: var(--dp-typography-weight-display);
+      letter-spacing: -0.01em;
+      color: var(--dp-color-ink);
+      margin-bottom: 6px;
+    }
+
+    .skill-desc {
+      font-size: var(--dp-typography-caption);
+      font-weight: var(--dp-typography-weight-reading);
+      color: #444;
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════════════════
+       DENEYİM BÖLÜMÜ
+    ═══════════════════════════════════════════ */
+    .section-experience {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    .section-heading-block.blue-block {
+      background: var(--dp-color-field);
+    }
+
+    .section-heading-block.blue-block h2 {
+      color: var(--dp-color-on-field);
+    }
+
+    .exp-item {
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .exp-number {
+      font-size: 3rem;
+      font-weight: var(--dp-typography-weight-display);
+      color: var(--dp-color-quiet);
+      line-height: 1;
+      min-width: 60px;
+    }
+
+    .exp-company {
+      font-size: 1.4rem;
+      font-weight: var(--dp-typography-weight-display);
+      letter-spacing: -0.02em;
+      color: var(--dp-color-ink);
+      margin-bottom: 4px;
+    }
+
+    .exp-role {
+      font-size: var(--dp-typography-label);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dp-color-field);
+      margin-bottom: 8px;
+    }
+
+    .exp-desc {
+      font-size: var(--dp-typography-reading);
+      line-height: var(--dp-typography-reading-leading);
+      color: var(--dp-color-ink);
+    }
+
+    .exp-badge {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--dp-color-field-support);
+      color: var(--dp-color-ink);
+      font-size: var(--dp-typography-caption);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border: 2px solid var(--dp-color-ink);
+    }
+
+    /* ═══════════════════════════════════════════
+       İLGİ ALANLARI BÖLÜMÜ – SARILI ALAN
+    ═══════════════════════════════════════════ */
+    .section-interests {
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    .interests-inner {
+      background: var(--dp-color-field-support);
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0;
+      padding: var(--dp-spacing-gutter);
+    }
+
+    .interest-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 20px 16px;
+      border: var(--dp-border-rule-compact) solid transparent;
+    }
+
+    .interest-item:hover {
+      border-color: var(--dp-color-ink);
+      background: rgba(0,0,0,0.05);
+    }
+
+    .interest-emoji {
+      font-size: 2rem;
+    }
+
+    .interest-name {
+      font-size: var(--dp-typography-label);
+      font-weight: var(--dp-typography-weight-label);
+      letter-spacing: 0.05em;
+      color: var(--dp-color-ink);
+    }
+
+    /* Bauhaus üçgen dekorasyon */
+    .triangle-decoration {
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 70px solid var(--dp-color-field);
+      align-self: center;
+      margin-right: var(--dp-spacing-gutter);
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       İLETİŞİM BÖLÜMÜ – KIRMIZI KAPANIŞ
+    ═══════════════════════════════════════════ */
+    .section-contact {
+      background: var(--dp-color-accent);
+      border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    }
+
+    .contact-inner {
+      padding: var(--dp-spacing-gutter);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-size: clamp(2rem, 6cqi, 4rem);
+      font-weight: var(--dp-typography-weight-display);
+      color: var(--dp-color-on-field);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .contact-note {
+      font-size: var(--dp-typography-label);
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--dp-color-on-field);
+      text-decoration: none;
+      font-size: var(--dp-typography-reading);
+      font-weight: var(--dp-typography-weight-label);
+      padding: 12px 20px;
+      background: rgba(0,0,0,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: background var(--dp-motion-interaction);
+      max-width: 400px;
+    }
+
+    .contact-link:hover {
+      background: rgba(0,0,0,0.35);
+    }
+
+    .contact-link:focus-visible {
+      outline: 3px solid var(--dp-color-field-support);
+      outline-offset: 2px;
+    }
+
+    .contact-link-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* İletişim sağ panel – büyük dairesel buton */
+    .contact-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: var(--dp-radius-circle);
+      background: var(--dp-color-on-field);
+      border: var(--dp-border-rule) solid var(--dp-color-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 0.8rem;
+      font-weight: var(--dp-typography-weight-display);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--dp-color-ink);
+      text-align: center;
+      box-shadow: 6px 6px 0 var(--dp-color-ink);
+      text-decoration: none;
+    }
+
+    .contact-circle:hover {
+      box-shadow: 3px 3px 0 var(--dp-color-ink);
+      transform: translate(3px, 3px);
+    }
+
+    .contact-circle:focus-visible {
+      outline: 3px solid var(--dp-color-field-support);
+    }
+
+    .contact-circle .cat-emoji {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    .footer {
+      background: var(--dp-color-ink);
+      color: var(--dp-color-on-field);
+      padding: 24px var(--dp-spacing-gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-name {
+      font-weight: var(--dp-typography-weight-display);
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-name span { color: var(--dp-color-field-support); }
+
+    .footer-copy {
+      font-size: var(--dp-typography-caption);
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-cat {
+      font-size: 1.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       MOBİL UYUMLULUK (RESPONSIVE)
+       Ekran genişliğine göre düzen değişimleri
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1050px) {
+      .hero {
+        grid-template-columns: 200px 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skill-card:nth-child(2) { border-right: none; }
+      .skill-card:nth-child(3) {
+        border-right: none;
+        border-top: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      /* Nav küçük ekran */
+      .nav-logo { font-size: 0.9rem; }
+
+      /* Hero dikey yığılma */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-accent-panel {
+        flex-direction: row;
+        align-items: center;
+        padding: 24px var(--dp-spacing-gutter);
+        border-right: none;
+        border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+        min-height: 160px;
+      }
+
+      .hero-cat-svg { max-width: 100px; margin: 0; }
+      .hero-label { writing-mode: horizontal-tb; transform: none; }
+
+      .hero-main-panel {
+        padding: 32px var(--dp-spacing-gutter);
+        gap: 20px;
+      }
+
+      .hero-name { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+
+      /* Bölüm başlıkları mobilde yatay */
+      .section-about,
+      .section-skills,
+      .section-experience {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading-block {
+        writing-mode: horizontal-tb;
+        min-width: auto;
+        padding: 16px var(--dp-spacing-gutter);
+        border-right: none;
+        border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+      }
+
+      .section-heading-block h2 {
+        writing-mode: horizontal-tb;
+        transform: none;
+        letter-spacing: 0.12em;
+      }
+
+      /* Beceriler tek sütun */
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-card {
+        border-right: none;
+        border-bottom: var(--dp-border-rule-compact) solid var(--dp-color-ink);
+      }
+
+      .skill-card:last-child { border-bottom: none; }
+      .skill-card:nth-child(3) { grid-column: auto; }
+
+      /* Olgular iki sütun kalır (küçük ekranda da okunabilir) */
+      .facts-grid { grid-template-columns: 1fr 1fr; }
+
+      /* İlgi alanları */
+      .interests-inner { grid-template-columns: 1fr; }
+      .triangle-decoration { display: none; }
+
+      /* İletişim */
+      .contact-inner { grid-template-columns: 1fr; }
+      .contact-cta { align-items: flex-start; }
+
+      /* Footer */
+      .footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    @media (max-width: 480px) {
+      .facts-grid { grid-template-columns: 1fr; }
+      .fact-item:nth-child(even) { border-right: none; }
+      .fact-item { border-bottom: var(--dp-border-rule-compact) solid var(--dp-color-ink) !important; }
+      .fact-item:last-child { border-bottom: none !important; }
+
+      .hero-langs { flex-wrap: wrap; }
+      .hero-cta-row { flex-direction: column; align-items: flex-start; }
+      .btn-circle { width: 100px; height: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVİGASYON ÇUBUĞU
+       "logo" ve dil geçiş düğmesi
+  ═══════════════════════════════════════════ -->
+  <nav class="nav-bar" role="navigation" aria-label="Ana navigasyon">
+    <span class="nav-logo">
+      <span class="logo-accent">GY</span> · Portfolio
+    </span>
+    <div class="nav-right">
+      <span class="nav-cat" aria-hidden="true">🐱</span>
+      <!-- Dil geçiş düğmesi – onclick JS fonksiyonunu çağırır -->
+      <button id="lang-toggle" onclick="toggleLang()" aria-label="Dil değiştir / Change language">
+        EN
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO (ANA) BÖLÜMÜ
+       Sol: Kırmızı panel + Bauhaus kedi
+       Sağ: İsim, daktilo animasyonu, diller
+  ═══════════════════════════════════════════ -->
+  <header class="hero" id="home">
+
+    <!-- Sol Kırmızı Panel -->
+    <div class="hero-accent-panel" aria-hidden="true">
+      <!-- Bauhaus stili kedi SVG illüstrasyonu (inline SVG = yükleme yok) -->
+      <svg class="hero-cat-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bauhaus stili kedi">
+        <!-- Vücut -->
+        <rect x="40" y="120" width="120" height="80" fill="#000"/>
+        <!-- Kafa -->
+        <rect x="50" y="60" width="100" height="80" fill="#000"/>
+        <!-- Sol kulak (üçgen) -->
+        <polygon points="50,75 65,30 85,75" fill="#000"/>
+        <!-- Sağ kulak (üçgen) -->
+        <polygon points="115,75 135,30 150,75" fill="#000"/>
+        <!-- Sol kulak iç -->
+        <polygon points="54,72 65,40 80,72" fill="#ff0000"/>
+        <!-- Sağ kulak iç -->
+        <polygon points="120,72 135,40 146,72" fill="#ff0000"/>
+        <!-- Sol göz (daire) -->
+        <circle cx="80" cy="100" r="14" fill="#ffff00"/>
+        <circle cx="80" cy="100" r="6" fill="#000"/>
+        <!-- Sağ göz (daire) -->
+        <circle cx="120" cy="100" r="14" fill="#0000ff"/>
+        <circle cx="120" cy="100" r="6" fill="#000"/>
+        <!-- Burun (küçük üçgen) -->
+        <polygon points="95,118 100,112 105,118" fill="#ff0000"/>
+        <!-- Ağız çizgileri -->
+        <rect x="85" y="122" width="12" height="3" fill="#fff"/>
+        <rect x="103" y="122" width="12" height="3" fill="#fff"/>
+        <!-- Bıyıklar -->
+        <rect x="20" y="115" width="35" height="2" fill="#fff"/>
+        <rect x="145" y="115" width="35" height="2" fill="#fff"/>
+        <rect x="22" y="108" width="30" height="2" fill="#fff"/>
+        <rect x="148" y="108" width="30" height="2" fill="#fff"/>
+        <!-- Kuyruk -->
+        <rect x="140" y="150" width="35" height="12" fill="#000" transform="rotate(-20, 140, 156)"/>
+        <!-- Göğüs beyaz alanı -->
+        <rect x="70" y="140" width="60" height="55" rx="0" fill="#f5f4ee"/>
+        <!-- Kol çizgileri -->
+        <rect x="40" y="120" width="20" height="50" fill="#000"/>
+        <rect x="140" y="120" width="20" height="50" fill="#000"/>
+        <!-- Pençeler -->
+        <rect x="38" y="165" width="26" height="8" fill="#000"/>
+        <rect x="136" y="165" width="26" height="8" fill="#000"/>
+      </svg>
+
+      <span class="hero-year">2026</span>
+      <span class="hero-label" data-tr="Çevirmen Adayı" data-en="Translator Candidate">Çevirmen Adayı</span>
+    </div>
+
+    <!-- Sağ Ana Panel -->
+    <div class="hero-main-panel">
+      <!-- Etiket -->
+      <span class="hero-tag" data-tr="Kişisel Portfolio" data-en="Personal Portfolio">Kişisel Portfolio</span>
+
+      <!-- İsim büyük başlık -->
+      <h1 class="hero-name">
+        Gizem<br>
+        <span class="name-line-accent">Yüksel</span>
+      </h1>
+
+      <!-- Daktilo animasyonu -->
+      <div class="typewriter-container">
+        <span class="typewriter-prefix" data-tr="Ben bir..." data-en="I am a...">Ben bir...</span>
+        <div class="typewriter-text" id="typewriter-text" aria-live="polite">
+          <span id="typewriter-content"></span><span class="cursor" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <!-- Çalışma dilleri -->
+      <div class="hero-langs" role="list" aria-label="Çalışma dilleri">
+        <div class="lang-pill lang-tr" role="listitem">
+          <span data-tr="🇹🇷 Türkçe" data-en="🇹🇷 Turkish">🇹🇷 Türkçe</span>
+        </div>
+        <div class="lang-pill lang-en" role="listitem">
+          <span data-tr="🇬🇧 İngilizce" data-en="🇬🇧 English">🇬🇧 İngilizce</span>
+        </div>
+        <div class="lang-pill lang-es" role="listitem">
+          <span data-tr="🇪🇸 İspanyolca" data-en="🇪🇸 Spanish">🇪🇸 İspanyolca</span>
+        </div>
+      </div>
+
+      <!-- CTA butonlar -->
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn-circle btn-accent" id="cta-main">
+          <span data-tr="Bana Ulaş" data-en="Contact Me">Bana<br>Ulaş</span>
+        </a>
+        <a href="#experience" class="btn-rect" id="cta-exp">
+          <span data-tr="Deneyimim →" data-en="Experience →">Deneyimim →</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       HAKKIMDA BÖLÜMÜ
+  ═══════════════════════════════════════════ -->
+  <section class="section-about seam" id="about" aria-labelledby="about-heading">
+    <div class="section-heading-block">
+      <h2 id="about-heading" data-tr="Hakkımda" data-en="About Me">Hakkımda</h2>
+    </div>
+    <div class="section-content">
+      <p class="about-text" id="about-text"
+         data-tr="İngilizceye çocukluğumdan beri olan ilgim ve yeteneğim beni bu alana yöneltti. Film ve dizi yerelleştirmesine, marketinge, film tarihi ve tekniklerine derin bir ilgi duyuyorum. Boş zamanlarımda film izlemeyi, kedileri ve kahveyi çok severim. Dilbilim ve kültürlerarası iletişim konusundaki tutkum, çevirmenlik kariyerime güçlü bir temel oluşturuyor."
+         data-en="My passion and talent for English since childhood led me to this field. I have a deep interest in film and TV localization, marketing, and film history and techniques. In my free time, I love watching movies, spending time with cats, and enjoying coffee. My passion for linguistics and cross-cultural communication forms a strong foundation for my translation career.">
+        İngilizceye çocukluğumdan beri olan ilgim ve yeteneğim beni bu alana yöneltti. Film ve dizi yerelleştirmesine, marketinge, film tarihi ve tekniklerine derin bir ilgi duyuyorum. Boş zamanlarımda film izlemeyi, kedileri ve kahveyi çok severim. Dilbilim ve kültürlerarası iletişim konusundaki tutkum, çevirmenlik kariyerime güçlü bir temel oluşturuyor.
+      </p>
+
+      <div class="about-goal">
+        <span class="goal-label" data-tr="Hedefim" data-en="My Goal">Hedefim</span>
+        <span id="about-goal-text"
+              data-tr="Kurumsal bir firmada marketing alanında çalışmak."
+              data-en="To work in the marketing field at a corporate company.">
+          Kurumsal bir firmada marketing alanında çalışmak.
+        </span>
+      </div>
+
+      <!-- Kişisel bilgi kartları -->
+      <div class="facts-grid">
+        <div class="fact-item">
+          <p class="fact-label" data-tr="Okul" data-en="University">Okul</p>
+          <p class="fact-value">Yeni Yüzyıl Üniversitesi</p>
+        </div>
+        <div class="fact-item">
+          <p class="fact-label" data-tr="Bölüm" data-en="Department">Bölüm</p>
+          <p class="fact-value" id="dept-text"
+             data-tr="İngilizce Mütercim Tercümanlık"
+             data-en="English Translation & Interpreting">
+            İngilizce Mütercim Tercümanlık
+          </p>
+        </div>
+        <div class="fact-item">
+          <p class="fact-label" data-tr="Sınıf" data-en="Year">Sınıf</p>
+          <p class="fact-value" id="year-text"
+             data-tr="4. Sınıf"
+             data-en="4th Year">
+            4. Sınıf
+          </p>
+        </div>
+        <div class="fact-item">
+          <p class="fact-label" data-tr="İlgi Alanı" data-en="Focus Area">İlgi Alanı</p>
+          <p class="fact-value" id="focus-text"
+             data-tr="Yerelleştirme & Marketing"
+             data-en="Localization & Marketing">
+            Yerelleştirme & Marketing
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BECERİLER BÖLÜMÜ
+  ═══════════════════════════════════════════ -->
+  <section class="section-skills seam" id="skills" aria-labelledby="skills-heading">
+    <div class="section-heading-block red-block">
+      <h2 id="skills-heading" data-tr="Beceriler" data-en="Skills">Beceriler</h2>
+    </div>
+    <div class="section-content">
+      <div class="skills-grid">
+        <!-- Beceri 1: Canva -->
+        <div class="skill-card">
+          <span class="skill-icon" aria-hidden="true">🎨</span>
+          <p class="skill-name">Canva</p>
+          <p class="skill-desc"
+             data-tr="Görsel tasarım, sosyal medya içerikleri ve sunum hazırlama"
+             data-en="Visual design, social media content and presentation creation">
+            Görsel tasarım, sosyal medya içerikleri ve sunum hazırlama
+          </p>
+        </div>
+        <!-- Beceri 2: CapCut -->
+        <div class="skill-card">
+          <span class="skill-icon" aria-hidden="true">🎬</span>
+          <p class="skill-name">CapCut</p>
+          <p class="skill-desc"
+             data-tr="Video düzenleme, kısa içerik üretimi ve montaj"
+             data-en="Video editing, short content production and post-production">
+            Video düzenleme, kısa içerik üretimi ve montaj
+          </p>
+        </div>
+        <!-- Beceri 3: Matecat -->
+        <div class="skill-card">
+          <span class="skill-icon" aria-hidden="true">📝</span>
+          <p class="skill-name">Matecat</p>
+          <p class="skill-desc"
+             data-tr="Bilgisayar destekli çeviri (CAT) aracı, çeviri hafıza yönetimi"
+             data-en="Computer-assisted translation (CAT) tool, translation memory management">
+            Bilgisayar destekli çeviri (CAT) aracı, çeviri hafıza yönetimi
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       DENEYİM BÖLÜMÜ
+  ═══════════════════════════════════════════ -->
+  <section class="section-experience seam" id="experience" aria-labelledby="exp-heading">
+    <div class="section-heading-block blue-block">
+      <h2 id="exp-heading" data-tr="Deneyim" data-en="Experience">Deneyim</h2>
+    </div>
+    <div class="section-content">
+      <div class="exp-item">
+        <div class="exp-number" aria-hidden="true">01</div>
+        <div>
+          <p class="exp-company">Bakırköy Nur Tercüme</p>
+          <p class="exp-role" id="exp-role-text"
+             data-tr="Çeviri Stajyeri"
+             data-en="Translation Intern">
+            Çeviri Stajyeri
+          </p>
+          <p class="exp-desc" id="exp-desc-text"
+             data-tr="Profesyonel çeviri ortamında iş süreçlerine dahil olarak gerçek projeler üzerinde deneyim kazandım. Çeviri kalite kontrol, müşteri iletişimi ve çeviri araçlarının kullanımı konularında uygulamalı eğitim aldım."
+             data-en="I gained experience working on real projects within a professional translation environment. I received hands-on training in translation quality control, client communication, and the use of translation tools.">
+            Profesyonel çeviri ortamında iş süreçlerine dahil olarak gerçek projeler üzerinde deneyim kazandım. Çeviri kalite kontrol, müşteri iletişimi ve çeviri araçlarının kullanımı konularında uygulamalı eğitim aldım.
+          </p>
+          <span class="exp-badge" id="exp-badge-text"
+                data-tr="Staj"
+                data-en="Internship">Staj</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       İLGİ ALANLARI / HOBİLER BÖLÜMÜ
+  ═══════════════════════════════════════════ -->
+  <section class="section-interests seam" id="interests" aria-labelledby="interests-heading">
+    <div class="interests-inner">
+      <div class="section-heading-block" style="background: var(--dp-color-field-support);">
+        <h2 id="interests-heading" data-tr="İlgi Alanları" data-en="Interests">İlgi Alanları</h2>
+      </div>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <span class="interest-emoji" aria-hidden="true">🎥</span>
+          <span class="interest-name" data-tr="Sinema" data-en="Cinema">Sinema</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-emoji" aria-hidden="true">📸</span>
+          <span class="interest-name" data-tr="Fotoğrafçılık" data-en="Photography">Fotoğrafçılık</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-emoji" aria-hidden="true">📱</span>
+          <span class="interest-name" data-tr="Dijital Medya" data-en="Digital Media">Dijital Medya</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-emoji" aria-hidden="true">🐾</span>
+          <span class="interest-name" data-tr="Hayvanlar" data-en="Animals">Hayvanlar</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-emoji" aria-hidden="true">📚</span>
+          <span class="interest-name" data-tr="Kitap Okumak" data-en="Reading">Kitap Okumak</span>
+        </div>
+        <div class="interest-item">
+          <span class="interest-emoji" aria-hidden="true">☕</span>
+          <span class="interest-name" data-tr="Kahve" data-en="Coffee">Kahve</span>
+        </div>
+      </div>
+      <!-- Bauhaus mavi üçgen dekorasyonu -->
+      <div class="triangle-decoration" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       İLETİŞİM BÖLÜMÜ
+       Kırmızı arka planlı kapanış bölümü
+  ═══════════════════════════════════════════ -->
+  <section class="section-contact seam" id="contact" aria-labelledby="contact-heading">
+    <div class="contact-inner">
+      <div>
+        <h2 class="contact-title" id="contact-heading"
+            data-tr="Bana Ulaş." data-en="Get In Touch.">
+          Bana Ulaş.
+        </h2>
+        <p class="contact-note"
+           data-tr="Sorularınız ve iş birliği teklifleri için"
+           data-en="For questions and collaboration proposals">
+          Sorularınız ve iş birliği teklifleri için
+        </p>
+
+        <div class="contact-links">
+          <!-- E-posta -->
+          <!-- E-posta adresini buradan değiştirebilirsin -->
+          <a href="mailto:anilssgiz@gmail.com" class="contact-link" aria-label="E-posta gönder">
+            <span class="contact-link-icon" aria-hidden="true">✉️</span>
+            anilssgiz@gmail.com
+          </a>
+
+          <!-- LinkedIn -->
+          <!-- LinkedIn URL'ini buradan değiştirebilirsin -->
+          <a href="https://www.linkedin.com/in/gizem-y%C3%BCksel-207a07369/" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profili (yeni sekmede açılır)">
+            <span class="contact-link-icon" aria-hidden="true">💼</span>
+            linkedin.com/in/gizem-yüksel
+          </a>
+
+          <!-- GitHub -->
+          <!-- GitHub URL'ini buradan değiştirebilirsin -->
+          <a href="https://github.com/gizem-yuksel" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub profili (yeni sekmede açılır)">
+            <span class="contact-link-icon" aria-hidden="true">🐙</span>
+            github.com/gizem-yuksel
+          </a>
+        </div>
+      </div>
+
+      <!-- Sağ sütun – dairesel dekoratif element -->
+      <div class="contact-cta">
+        <a href="mailto:anilssgiz@gmail.com" class="contact-circle" aria-label="E-posta gönder">
+          <span class="cat-emoji" aria-hidden="true">🐱</span>
+          <span data-tr="Selamla!" data-en="Say hi!">Selamla!</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer seam">
+    <span class="footer-name">Gizem <span>Yüksel</span></span>
+    <span class="footer-copy" id="footer-copy"
+          data-tr="Tüm hakları saklıdır · 2026"
+          data-en="All rights reserved · 2026">
+      Tüm hakları saklıdır · 2026
+    </span>
+    <span class="footer-cat" aria-hidden="true">🐈</span>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+       Daktilo animasyonu ve dil geçiş sistemi
+  ═══════════════════════════════════════════ -->
+  <script>
+    /* ─────────────────────────────────────────────
+       DAKTİLO (TYPEWRITER) ANİMASYONU
+       Türkçe ve İngilizce cümleler ayrı dizilerde
+    ───────────────────────────────────────────── */
+    const typewriterPhrases = {
+      tr: [
+        "çevirmen adayıyım 🌍",
+        "film aşığıyım 🎬",
+        "kedi dostu bir ruhumum 🐱",
+        "yerelleştirme meraklısıyım 📺",
+        "kahve bağımlısıyım ☕",
+        "marketing tutkunu birisiyim 📢",
+        "fotoğraf severim 📸",
+      ],
+      en: [
+        "a translator candidate 🌍",
+        "a film enthusiast 🎬",
+        "a cat lover at heart 🐱",
+        "passionate about localization 📺",
+        "a coffee addict ☕",
+        "passionate about marketing 📢",
+        "a photography lover 📸",
+      ]
+    };
+
+    let currentLang = 'tr';          // Aktif dil
+    let typewriterIndex = 0;         // Hangi cümlede olduğumuz
+    let charIndex = 0;               // Kaçıncı karakterdeyiz
+    let isDeleting = false;          // Silme mi, yazma mı?
+    let typewriterTimer = null;      // setTimeout referansı
+
+    const typewriterEl = document.getElementById('typewriter-content');
+
+    function runTypewriter() {
+      const phrases = typewriterPhrases[currentLang];
+      const current = phrases[typewriterIndex % phrases.length];
+
+      if (isDeleting) {
+        // Silme: bir karakter azalt
+        charIndex--;
+      } else {
+        // Yazma: bir karakter ekle
+        charIndex++;
+      }
+
+      typewriterEl.textContent = current.substring(0, charIndex);
+
+      let delay = isDeleting ? 60 : 90;   // Silme hızlı, yazma yavaş
+
+      if (!isDeleting && charIndex === current.length) {
+        // Tam yazıldı: 1.8 sn bekle, sonra sil
+        delay = 1800;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        // Tamamen silindi: sonraki cümleye geç
+        isDeleting = false;
+        typewriterIndex++;
+        delay = 400;
+      }
+
+      typewriterTimer = setTimeout(runTypewriter, delay);
+    }
+
+    // Daktilo animasyonunu başlat
+    runTypewriter();
+
+    /* ─────────────────────────────────────────────
+       DİL GEÇİŞ SİSTEMİ
+       data-tr ve data-en attribute'larını kullanır
+    ───────────────────────────────────────────── */
+    function toggleLang() {
+      // Dil değiştir
+      currentLang = currentLang === 'tr' ? 'en' : 'tr';
+
+      const btn = document.getElementById('lang-toggle');
+      btn.textContent = currentLang === 'tr' ? 'EN' : 'TR';
+
+      // HTML lang attribute güncelle (ekran okuyucular için)
+      document.documentElement.lang = currentLang === 'tr' ? 'tr' : 'en';
+
+      // Tüm data-tr / data-en attribute'larına sahip elementleri güncelle
+      document.querySelectorAll('[data-tr]').forEach(el => {
+        const text = el.getAttribute('data-' + currentLang);
+        if (text) {
+          // Eğer element sadece metin içeriyorsa textContent güncelle
+          // data-* attribute'u hem span hem p hem div'de kullanıldı
+          el.textContent = text;
+        }
+      });
+
+      // Daktilo animasyonu: karakter sıfırla, yeni dile geç
+      clearTimeout(typewriterTimer);
+      charIndex = 0;
+      isDeleting = false;
+      typewriterEl.textContent = '';
+      runTypewriter();
+    }
+
+    /* ─────────────────────────────────────────────
+       KAYDIRMALİ ODAK (Smooth scroll fallback)
+       Eski tarayıcılar için düzeltme
+    ───────────────────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Erişilebilirlik: odağı hedef elemana taşı
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    /* ─────────────────────────────────────────────
+       KAYDIRMALİ GÖRÜNÜM ANİMASYONU (Intersection Observer)
+       Bölümler ekrana girince hafifçe belirsin
+    ───────────────────────────────────────────── */
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Gözlemlenecek bölümler (reduced motion tercihini kontrol et)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+      });
+    }
+  </script>
+
+</body>
+</html>
